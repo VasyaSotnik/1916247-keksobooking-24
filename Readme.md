@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Василий Владимирович  Сотников](https://up.htmlacademy.ru/javascript/24/user/1916247).
-* Наставник: [Владислав  Кривокора](https://htmlacademy.ru/profile/krivokora).
+* Наставник: [Владислав Кривокора](https://htmlacademy.ru/profile/krivokora).
 
 ---
 
