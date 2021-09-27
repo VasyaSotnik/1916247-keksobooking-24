@@ -2,7 +2,7 @@ const getRandom = (min, max) => {
 
   const random = (min < 0) ? console.log('Пожалуйста, введите положительное значение!')
   : (max <= min) ? console.log('Пожалуйста, введите значение больше значения "ОТ"')
-  : Math.random() * (max - min + 1);
+  : Math.random() * (max - min) + min;
   return random;
 }; // Число с плавающей точкой
 
@@ -12,9 +12,11 @@ const getRandom = (min, max) => {
   max = Math.round(max);
   const random = (min < 0) ? console.log('Пожалуйста, введите положительное значение!')
   : (max <= min) ? console.log('Пожалуйста, введите значение больше значения "ОТ"')
-  : Math.round(Math.random() * (max - min + 1));
+  : Math.round(Math.random() * (max - min) + min);
   return random;
-}; // - Вызов целого числа
+};
+getRandom(1,2);// - Вызов целого числа
+
 
 
 /*
