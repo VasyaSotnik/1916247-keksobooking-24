@@ -1,8 +1,7 @@
-const getRandom = (min, max) => {
-
+const getFloatRandom = (min, max, float = 15) => {
   const random = (min < 0) ? console.log('Пожалуйста, введите положительное значение!')
   : (max <= min) ? console.log('Пожалуйста, введите значение больше значения "ОТ"')
-  : Math.random() * (max - min) + min;
+  : (Math.random() * (max - min) + min).toFixed(float);
   return random;
 }; // Число с плавающей точкой
 
