@@ -1,3 +1,10 @@
+/* eslint-disable prefer-const */
+/* eslint-disable arrow-body-style */
+/* eslint-disable prefer-template */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-console */
+
 const MIN_PRICE = 1000; // Минимальная стоимость
 const MAX_PRICE = 100000; // максимальная стоимость
 const MIN_ROOMS = 1; //  Минимальное количество комнат
@@ -18,6 +25,7 @@ const PHOTOS_ARR = ['https://assets.htmlacademy.ru/content/intensive/javascript-
 const getRandoms = (min, max) => {
   min = Math.round(min);
   max = Math.round(max);
+
   const random = (min < 0) ? console.log('Пожалуйста, введите положительное значение!')
     : (max <= min) ? console.log('Пожалуйста, введите значение больше значения "ОТ"')
       : Math.round(Math.random() * (max - min) + min);
@@ -31,61 +39,57 @@ const getFloatRandom = (min, max, float = 15) => {
   return random;
 }; // Случайное число От и До с плавающей точкой
 
-let author = {
+
+const author = {
   avatar: function () {
-    let randomPng = getRandoms(0, 10);
-    let avatar = '';
-    randomAvatar < 10 ? avatar = 'img/avatars/user' + '0' + randomPng + '.png' : avatar = 'img/avatars/user' + randomPng + '.png';
-    return avatar;
-  }
+    let randomPng = getRandoms(0 , 10);
+    randomPng = randomPng < 10 ? '0' + randomPng : randomPng;
+    return 'img/avatar/user' + randomPng + '.png';
+  },
 }; // Обьект, описывающий автора
 
+
 const getArr = (value) => {
-  let getObject = getRandoms(0, value.length - 1);
-  for (let i = 0; 0 <= value.length - 1; i++) {
-    if (i === getObject) {
-      getObject = value[i];
-      break;
+  return value[getRandoms(0, value.length - 1)];
+}; // Функция вызова рандомного значения из Массива
+
+const pushArray = (value) => {
+  let randomLength = getRandoms(0, value.length - 1);
+  let array = [];
+  while (array.length - 1 < randomLength) {
+    let checkArray = getArr(value);
+    if (!array.includes(checkArray)) {
+      array.push(checkArray);
     }
   }
-  return getObject;
-}; // Функция вызова рандомного значения из Массива
+  return array;
+};
 
 const offer = {
   title: 'Заголовок',
   address: '55.7522, 37.6156',
-  price: function () {
-    return getRandoms(MIN_PRICE, MAX_PRICE);
-  },
-  type: function () {
-    return getArr(TYPE_ARR);
-  },
-  rooms: function () {
-    return getRandoms(MIN_ROOMS, MAX_ROOMS);
-  },
-  guests: function () {
-    return getRandoms(MIN_GUESTS, MAX_GUESTS);
-  },
-  checkin: function () {
-    return getArr(CHECKIN_CHECKOUT_ARR);
-  },
-  checkout: function () {
-    return getArr(CHECKIN_CHECKOUT_ARR);
-  },
-  features: function () {
-    return getArr(FEATURE_ARR);
-  },
+  price: getRandoms(MIN_PRICE, MAX_PRICE),
+  type: getArr(TYPE_ARR),
+  rooms: getRandoms(MIN_ROOMS, MAX_ROOMS),
+  guests: getRandoms(MIN_GUESTS, MAX_GUESTS),
+  checkin: getArr(CHECKIN_CHECKOUT_ARR),
+  checkout: getArr(CHECKIN_CHECKOUT_ARR),
+  features: pushArray(FEATURE_ARR),
   description: 'Хостел',
-  photos: function () {
-    return getArr(PHOTOS_ARR);
-  },
+  photos: pushArray(PHOTOS_ARR),
 }; // Обьект с информацией об обьявлении
 
 const location = {
-  lat: function () {
-    return getFloatRandom(MIN_LAT, MAX_LAT, 5);
-  },
-  lng: function () {
-    return getFloatRandom(MIN_LNG, MAX_LNG, 5);
-  },
+  lat: getFloatRandom(MIN_LAT, MAX_LAT, 5),
+  lng: getFloatRandom(MIN_LNG, MAX_LNG, 5),
 }; // Обьект с локацией
+
+
+const getRandomArr = () => {
+  let firstArray = Object.values(offer);
+  let secondArray = Object.values(location);
+  firstArray.splice(9,1);
+  firstArray.splice(0,2);
+  let finalArray = firstArray.concat(secondArray);
+  return finalArray;
+}; // Массив из 10 рандомных значений
