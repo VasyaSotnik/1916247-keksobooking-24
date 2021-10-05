@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 /* eslint-disable prefer-const */
 /* eslint-disable arrow-body-style */
 /* eslint-disable prefer-template */
@@ -86,10 +87,9 @@ const location = {
 
 
 const getRandomArr = () => {
-  let firstArray = Object.values(offer);
-  let secondArray = Object.values(location);
-  firstArray.splice(9,1);
-  firstArray.splice(0,2);
-  let finalArray = firstArray.concat(secondArray);
-  return finalArray;
+  let array = Object.values(offer).splice(2);
+  array.splice(7,1);
+  array = String(array).split(',');
+  String(Object.values(location)).split(',').push(array);
+  return array;
 }; // Массив из 10 рандомных значений
