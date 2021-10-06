@@ -80,7 +80,7 @@ const offer = {
   photos: pushArray(PHOTOS_ARR),
 }; // Обьект с информацией об обьявлении
 
-const location = {
+let locations = {
   lat: getFloatRandom(MIN_LAT, MAX_LAT, 5),
   lng: getFloatRandom(MIN_LNG, MAX_LNG, 5),
 }; // Обьект с локацией
@@ -88,8 +88,10 @@ const location = {
 
 const getRandomArr = () => {
   let array = Object.values(offer).splice(2);
+  let secondArray = String(Object.values(locations)).split(',');
   array.splice(7,1);
   array = String(array).split(',');
-  String(Object.values(location)).split(',').push(array);
-  return array;
+  return [...array, ...secondArray];
 }; // Массив из 10 рандомных значений
+
+console.log(getRandomArr());
