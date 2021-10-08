@@ -1,9 +1,6 @@
-/* eslint-disable eol-last */
-/* eslint-disable prefer-const */
-/* eslint-disable arrow-body-style */
-/* eslint-disable prefer-template */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
+
 /* eslint-disable no-console */
 
 const MIN_PRICE = 1000; // Минимальная стоимость
@@ -44,21 +41,19 @@ const getFloatRandom = (min, max, float = 15) => {
 const author = {
   avatar: function () {
     let randomPng = getRandoms(0 , 10);
-    randomPng = randomPng < 10 ? '0' + randomPng : randomPng;
-    return 'img/avatar/user' + randomPng + '.png';
+    randomPng = randomPng < 10 ? `0${  randomPng}` : randomPng;
+    return `img/avatar/user${  randomPng  }.png`;
   },
 }; // Обьект, описывающий автора
 
 
-const getArr = (value) => {
-  return value[getRandoms(0, value.length - 1)];
-}; // Функция вызова рандомного значения из Массива
+const getArr = (value) => value[getRandoms(0, value.length - 1)]; // Функция вызова рандомного значения из Массива
 
 const pushArray = (value) => {
-  let randomLength = getRandoms(0, value.length - 1);
-  let array = [];
+  const randomLength = getRandoms(0, value.length - 1);
+  const array = [];
   while (array.length - 1 < randomLength) {
-    let checkArray = getArr(value);
+    const checkArray = getArr(value);
     if (!array.includes(checkArray)) {
       array.push(checkArray);
     }
@@ -80,7 +75,7 @@ const offer = {
   photos: pushArray(PHOTOS_ARR),
 }; // Обьект с информацией об обьявлении
 
-let locations = {
+const locations = {
   lat: getFloatRandom(MIN_LAT, MAX_LAT, 5),
   lng: getFloatRandom(MIN_LNG, MAX_LNG, 5),
 }; // Обьект с локацией
@@ -88,7 +83,7 @@ let locations = {
 
 const getRandomArr = () => {
   let array = Object.values(offer).splice(2);
-  let secondArray = String(Object.values(locations)).split(',');
+  const secondArray = String(Object.values(locations)).split(',');
   array.splice(7,1);
   array = String(array).split(',');
   return [...array, ...secondArray];
