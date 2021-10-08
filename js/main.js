@@ -1,24 +1,9 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
 /* eslint-disable no-nested-ternary */
-
 /* eslint-disable no-console */
 
-const MIN_PRICE = 1000; // Минимальная стоимость
-const MAX_PRICE = 100000; // максимальная стоимость
-const MIN_ROOMS = 1; //  Минимальное количество комнат
-const MAX_ROOMS = 10; // Максимальное количество комнат
-const MIN_GUESTS = 1; // Минимум гостей
-const MAX_GUESTS = 10; // Максимум гостей
-const MIN_LAT = 35.64561; // Координаты широты, минимальное значение (от)
-const MAX_LAT = 35.70000; // Координаты широты, максимальное значение (до)
-const MIN_LNG = 139.70000; // Координаты долготы, максимальное значение (от)
-const MAX_LNG = 139.80000; // Координаты долготы, максимальное значение (до)
-const FEATURE_ARR = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner']; // Массив особенности
-const TYPE_ARR = ['palace', 'flat', 'house', 'bungalow', 'hotel']; // Массив типа дома
-const CHECKIN_CHECKOUT_ARR = ['12:00', '13:00', '14:00']; // Массив времени
-const PHOTOS_ARR = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg']; // Массив с Фотками
+import {MIN_PRICE, MAX_PRICE, MIN_ROOMS, MAX_ROOMS, MIN_GUESTS, MAX_GUESTS, MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, FEATURE_ARR, TYPE_ARR, CHECKIN_CHECKOUT_ARR, PHOTOS_ARR} from './set.js';
 
 const getRandoms = (min, max) => {
   min = Math.round(min);
@@ -49,16 +34,14 @@ const author = {
 
 const getArr = (value) => value[getRandoms(0, value.length - 1)]; // Функция вызова рандомного значения из Массива
 
-const pushArray = (value) => {
-  const randomLength = getRandoms(0, value.length - 1);
-  const array = [];
-  while (array.length - 1 < randomLength) {
-    const checkArray = getArr(value);
-    if (!array.includes(checkArray)) {
-      array.push(checkArray);
+const pushArray = (array) => {
+  const newArray = [];
+  array.forEach((array) => {
+    if(getRandoms(0,1)) {
+      newArray.push(array);
     }
-  }
-  return array;
+  });
+  return newArray;
 };
 
 const offer = {
@@ -88,5 +71,3 @@ const getRandomArr = () => {
   array = String(array).split(',');
   return [...array, ...secondArray];
 }; // Массив из 10 рандомных значений
-
-console.log(getRandomArr());
